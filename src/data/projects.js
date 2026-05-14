@@ -56,7 +56,7 @@ export const projects = [
     title: 'FacePresent',
     tagline: 'Kehadiran dibuktikan dengan wajah, bukan tanda tangan.',
     synopsis:
-      'Sistem absensi berbasis face recognition yang menggantikan absen manual atau fingerprint. Kamera menangkap wajah, model AI memverifikasi identitas dalam hitungan detik, data langsung tercatat dengan timestamp. Dirancang untuk lingkungan sekolah atau perusahaan kecil-menengah yang ingin presisi tanpa infrastruktur mahal.',
+      'Sistem absensi berbasis face recognition yang menggantikan absen manual atau isi link. Kamera menangkap wajah, model AI memverifikasi identitas dalam hitungan detik, data langsung tercatat dengan timestamp. Dirancang untuk lingkungan organisasi, sekolah atau perusahaan kecil-menengah yang ingin presisi tanpa infrastruktur mahal.',
     what_i_built:
       'Pipeline face recognition end-to-end: deteksi wajah real-time via kamera, face embedding dengan model deep learning, matching ke database terdaftar, pencatatan otomatis ke sistem manajemen kehadiran, dan dashboard laporan untuk admin.',
     stack: ['Python', 'OpenCV', 'DeepFace', 'FastAPI', 'React', 'PostgreSQL'],
@@ -69,7 +69,7 @@ export const projects = [
     runtime: null,
     aperture: 'f/2.8',
     status: 'beta',
-    highlight: 'Verifikasi identitas real-time tanpa hardware tambahan — hanya kamera laptop/CCTV.',
+    highlight: 'Verifikasi identitas real-time tanpa hardware tambahan — hanya kamera bawaan Tab ataupun Laptop.',
   },
 ]
 

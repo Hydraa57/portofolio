@@ -46,15 +46,6 @@ export default function Hero() {
           </h1>
         </div>
 
-        {/* profile image */}
-        <div className="reveal mt-10 reveal-delay-3">
-          <img
-            src="/profile.png"
-            alt="Muhamad Hafidz Hidayatulloh"
-            className="h-40 w-40 rounded-full object-cover border border-[var(--ink)]/20 shadow-xl"
-          />
-        </div>
-
         {/* meta strip */}
         <div className="reveal mt-10 grid gap-6 border-t border-[var(--ink)]/25 pt-8 sm:grid-cols-3 sm:gap-10 reveal-delay-3">
           <div>

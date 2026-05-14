@@ -20,26 +20,26 @@ export const meta = {
 export const socials = [
   {
     role:   'GitHub',
-    label:  'github.com/Hydraa57',        // ganti dengan username asli
-    href:   'https://github.com/Hydraa57',
+    label:  'github.com/hafidz',        // ganti dengan username asli
+    href:   'https://github.com/hafidz',
     slug:   'github',
   },
   {
     role:   'Instagram',
     label:  '@hafidz.id',               // ganti dengan handle asli
-    href:   'https://instagram.com/h_zdifah',
+    href:   'https://instagram.com/hafidz.id',
     slug:   'instagram',
   },
   {
     role:   'WhatsApp',
-    label:  '+62 882 - 9162 - 3735',        // ganti dengan nomor asli
-    href:   'https://wa.me/6288291623735',
+    label:  '+62 812-XXXX-XXXX',        // ganti dengan nomor asli
+    href:   'https://wa.me/628120000000',
     slug:   'whatsapp',
   },
   {
     role:   'Email',
-    label:  'hafidzhidayatulloh25@gmail.com',
-    href:   'mailto:hafidzhidayatulloh25@gmail.com',
+    label:  'halo@hfdz.my.id',
+    href:   'mailto:halo@hfdz.my.id',
     slug:   'gmail',
   },
 ]
@@ -53,6 +53,6 @@ export const credits = [
   { role: 'Editing & Post',     value: 'n8n · Make · WhatsApp API' },
   { role: 'Color Grade',        value: 'Fraunces Typeface · Geist · #f1eadc' },
   { role: 'Production',         value: 'Vercel · Supabase · Docker' },
-  { role: 'Location',           value: 'Indonesia · UTC+7 · BKS' },
+  { role: 'Location',           value: 'Indonesia · UTC+7 · JKT' },
   { role: 'Distribution',       value: 'hfdz.my.id · nayyiraai.online' },
 ]

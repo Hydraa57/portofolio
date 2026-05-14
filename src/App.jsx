@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useReveal } from './hooks/useReveal.js'
+import { useCutKey } from './hooks/useCutKey.js'
 import { projects } from './data/projects.js'
 
 import Intro        from './components/Intro.jsx'
@@ -8,34 +9,49 @@ import Hero         from './components/Hero.jsx'
 import Intertitle   from './components/Intertitle.jsx'
 import Origin       from './components/Origin.jsx'
 import Craft        from './components/Craft.jsx'
+import Marquee      from './components/Marquee.jsx'
 import Scene        from './components/Scene.jsx'
 import Credits      from './components/Credits.jsx'
 import Footer       from './components/Footer.jsx'
 import FilmScrubber from './components/FilmScrubber.jsx'
+import Cursor       from './components/Cursor.jsx'
 
 export default function App() {
   const [introDone, setIntroDone] = useState(false)
+  const cutting = useCutKey()
 
   useEffect(() => {
     const t = setTimeout(() => setIntroDone(true), 2450)
     return () => clearTimeout(t)
   }, [])
 
-  // Activate scroll reveal after intro finishes
   useReveal(introDone)
 
   return (
     <>
+      {/* Custom cinematic cursor (desktop only) */}
+      <Cursor />
+
       {/* Cinematic intro splash */}
       <Intro done={introDone} />
+
+      {/* "CUT!" easter egg — flashes when user presses C */}
+      <div
+        className="cut-flash pointer-events-none fixed inset-0 z-[80] bg-[var(--ink)]"
+        data-cutting={cutting ? 'true' : 'false'}
+        aria-hidden
+      >
+        <div className="flex h-full items-center justify-center">
+          <span className="font-serif text-7xl italic text-[var(--paper)] sm:text-9xl">Cut!</span>
+        </div>
+      </div>
 
       {/* Main layout */}
       <div className="grain vignette paper-tex relative min-h-screen bg-[var(--paper)]">
 
-        {/* Fixed top navigation / film slate */}
         <Slate />
 
-        <main className="pt-[44px] pb-16"> {/* pt = slate height */}
+        <main className="pt-[44px] pb-16">
 
           {/* ── OPENING ────────────────────────────────── */}
           <Hero />
@@ -58,6 +74,9 @@ export default function App() {
           />
           <Craft />
 
+          {/* ── INTERLUDE: MARQUEE ─────────────────────── */}
+          <Marquee />
+
           {/* ── ACT III — SELECTED WORKS ───────────────── */}
           <Intertitle
             act="III"
@@ -71,7 +90,7 @@ export default function App() {
             ))}
           </section>
 
-          {/* ── CLOSING CREDITS ────────────────────────── */}
+          {/* ── CLOSING ────────────────────────────────── */}
           <Intertitle
             act="∞"
             latin="FINIS"
@@ -82,8 +101,6 @@ export default function App() {
         </main>
 
         <Footer />
-
-        {/* Fixed bottom film scrubber (clickable) */}
         <FilmScrubber />
       </div>
     </>

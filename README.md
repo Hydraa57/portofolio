@@ -206,10 +206,12 @@ const handleSubmit = async (e) => {
 | Hover project frame | Screenshot website asli muncul + scanline sweep |
 | Hover CTA "Press play" | Tombol magnetic ke cursor + shimmer effect |
 | Hover hero headline | Letter spacing tightens + warna jadi terracotta |
-| Tekan `C` di keyboard | Layar flash "Cut!" 0.36s |
+| Hover tech logo | Logo mono → warna brand asli + scale & rotate halus |
+| **Tekan `C`** | Layar flash "Cut!" 0.36s (film cut) |
+| **Tahan `B`** | SMPTE color bars muncul (test pattern TV jadul) |
 | Klik scrubber bawah | Scroll ke posisi yang di-klik |
-| Scroll | Timecode counter naik, progress bar fill, reveal animations trigger |
-| Hover tech logo | Logo mono → warna brand asli (slow fade) |
+| Scroll | Timecode counter naik, progress bar fill, reveal animations |
+| Filmstrip pre-footer | Klik frame → scroll ke project ybs |
 
 ---
 

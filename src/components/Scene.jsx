@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ArrowUpRight, ExternalLink, Eye } from 'lucide-react'
+import Laurels from './Laurels.jsx'
 
 /**
  * Scene — single project card with hover-reveal live screenshot.
@@ -177,16 +178,26 @@ export default function Scene({ project: p, reversed = false }) {
               </p>
             </div>
 
-            {/* stack */}
-            <div className="reveal mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-[var(--ink)]/15 pt-5">
-              {p.stack.map((t) => (
-                <span
-                  key={t}
-                  className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--ink-dim)] transition-colors hover:text-[var(--ink)]"
-                >
-                  {t}
-                </span>
-              ))}
+            {/* laurels + stack */}
+            <div className="reveal mt-8 border-t border-[var(--ink)]/15 pt-5">
+              {/* festival-style laurel for status */}
+              {p.status === 'live' && (
+                <Laurels topText="OFFICIAL" mainText="SELECTION" year={p.year} />
+              )}
+              {p.status === 'beta' && (
+                <Laurels topText="WORK IN" mainText="PROGRESS" year={p.year} />
+              )}
+
+              <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
+                {p.stack.map((t) => (
+                  <span
+                    key={t}
+                    className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--ink-dim)] transition-colors hover:text-[var(--ink)]"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
             </div>
 
             {/* links */}

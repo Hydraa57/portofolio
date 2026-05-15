@@ -1,36 +1,23 @@
 /**
- * TechLogo — renders icon from cdn.simpleicons.org
- * Mono ink state → hover reveals brand color.
- * Falls back gracefully if CDN is unreachable.
+ * TechLogo — renders icon as inline SVG (bundled, no network req).
+ * Mono ink default → fades to brand color on hover via CSS variable.
  */
-export default function TechLogo({ slug, name, color }) {
-  const mono  = `https://cdn.simpleicons.org/${slug}/1a1612`   // ink color
-  const brand = `https://cdn.simpleicons.org/${slug}/${color?.replace('#', '')}` // brand color
-
+export default function TechLogo({ name, Icon, color }) {
   return (
-    <div className="tech-item group inline-flex cursor-default items-center gap-2.5">
-      <span className="relative h-4 w-4 shrink-0 select-none">
-        <img
-          src={mono}
-          alt={name}
-          width={16} height={16}
-          className="tech-logo-mono absolute inset-0 h-full w-full object-contain"
-          loading="lazy"
-          decoding="async"
-        />
-        <img
-          src={brand}
-          alt=""
-          aria-hidden
-          width={16} height={16}
-          className="tech-logo-color absolute inset-0 h-full w-full object-contain"
-          loading="lazy"
-          decoding="async"
-        />
+    <span
+      className="tech-item group inline-flex cursor-default items-center gap-2.5"
+      style={{ '--brand': color }}
+    >
+      <span className="tech-svg relative inline-flex h-4 w-4 shrink-0 items-center justify-center">
+        {Icon ? (
+          <Icon className="h-full w-full" aria-hidden />
+        ) : (
+          <span className="text-[8px] font-bold">{name?.[0]}</span>
+        )}
       </span>
-      <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ink)] transition-colors group-hover:text-[var(--ink-soft)]">
+      <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--ink)] transition-colors duration-500 group-hover:text-[var(--ink-soft)]">
         {name}
       </span>
-    </div>
+    </span>
   )
 }

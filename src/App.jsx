@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
-import { useReveal } from './hooks/useReveal.js'
-import { useCutKey } from './hooks/useCutKey.js'
-import { projects } from './data/projects.js'
+import { useReveal }    from './hooks/useReveal.js'
+import { useCutKey }    from './hooks/useCutKey.js'
+import { useColorBars } from './hooks/useColorBars.js'
+import { projects }     from './data/projects.js'
 
 import Intro        from './components/Intro.jsx'
 import Slate        from './components/Slate.jsx'
@@ -12,13 +13,16 @@ import Craft        from './components/Craft.jsx'
 import Marquee      from './components/Marquee.jsx'
 import Scene        from './components/Scene.jsx'
 import Credits      from './components/Credits.jsx'
+import Filmstrip    from './components/Filmstrip.jsx'
 import Footer       from './components/Footer.jsx'
 import FilmScrubber from './components/FilmScrubber.jsx'
 import Cursor       from './components/Cursor.jsx'
+import ColorBars    from './components/ColorBars.jsx'
 
 export default function App() {
   const [introDone, setIntroDone] = useState(false)
-  const cutting = useCutKey()
+  const cutting   = useCutKey()
+  const barsOn    = useColorBars()
 
   useEffect(() => {
     const t = setTimeout(() => setIntroDone(true), 2450)
@@ -29,13 +33,10 @@ export default function App() {
 
   return (
     <>
-      {/* Custom cinematic cursor (desktop only) */}
       <Cursor />
-
-      {/* Cinematic intro splash */}
       <Intro done={introDone} />
 
-      {/* "CUT!" easter egg — flashes when user presses C */}
+      {/* Press C → cut! flash */}
       <div
         className="cut-flash pointer-events-none fixed inset-0 z-[80] bg-[var(--ink)]"
         data-cutting={cutting ? 'true' : 'false'}
@@ -46,17 +47,17 @@ export default function App() {
         </div>
       </div>
 
-      {/* Main layout */}
+      {/* Hold B → SMPTE color bars */}
+      <ColorBars active={barsOn} />
+
       <div className="grain vignette paper-tex relative min-h-screen bg-[var(--paper)]">
 
         <Slate />
 
         <main className="pt-[44px] pb-16">
 
-          {/* ── OPENING ────────────────────────────────── */}
           <Hero />
 
-          {/* ── ACT I — ORIGIN ─────────────────────────── */}
           <Intertitle
             act="I"
             latin="PARS PRIMA"
@@ -65,7 +66,6 @@ export default function App() {
           />
           <Origin />
 
-          {/* ── ACT II — CRAFT ─────────────────────────── */}
           <Intertitle
             act="II"
             latin="PARS SECUNDA"
@@ -74,10 +74,8 @@ export default function App() {
           />
           <Craft />
 
-          {/* ── INTERLUDE: MARQUEE ─────────────────────── */}
           <Marquee />
 
-          {/* ── ACT III — SELECTED WORKS ───────────────── */}
           <Intertitle
             act="III"
             latin="PARS TERTIA"
@@ -90,7 +88,6 @@ export default function App() {
             ))}
           </section>
 
-          {/* ── CLOSING ────────────────────────────────── */}
           <Intertitle
             act="∞"
             latin="FINIS"
@@ -99,6 +96,9 @@ export default function App() {
           />
           <Credits />
         </main>
+
+        {/* Filmstrip — visual closer before Fin */}
+        <Filmstrip />
 
         <Footer />
         <FilmScrubber />

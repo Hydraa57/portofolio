@@ -1,17 +1,27 @@
 import { useState } from 'react'
 import { ArrowUpRight, Send } from 'lucide-react'
-import { socials, credits, meta } from '../data/meta.js'
-import TechLogo from './TechLogo.jsx'
+import { SiGithub, SiInstagram, SiWhatsapp, SiGmail } from 'react-icons/si'
+import { socials, credits } from '../data/meta.js'
+
+/**
+ * Map social slug → React icon component.
+ * Add new slugs here as needed.
+ */
+const ICON_MAP = {
+  github:    SiGithub,
+  instagram: SiInstagram,
+  whatsapp:  SiWhatsapp,
+  gmail:     SiGmail,
+}
 
 export default function Credits() {
-  const [form, setForm]   = useState({ name: '', email: '', message: '' })
-  const [status, setStatus] = useState('idle') // idle | sending | sent
+  const [form, setForm]     = useState({ name: '', email: '', message: '' })
+  const [status, setStatus] = useState('idle')
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setStatus('sending')
-    // Ganti URL di bawah dengan endpoint Formspree/Web3Forms Anda
-    // atau biarkan mailto sebagai fallback:
+    // Default fallback: mailto. Swap to Formspree/Web3Forms in production.
     const body = encodeURIComponent(
       `Nama: ${form.name}\n\n${form.message}\n\n— ${form.email}`
     )
@@ -39,7 +49,6 @@ export default function Credits() {
           </p>
         </div>
 
-        {/* two-col layout */}
         <div className="mt-16 grid gap-16 lg:grid-cols-2 lg:gap-20">
 
           {/* LEFT — credit roll + social links */}
@@ -65,26 +74,29 @@ export default function Credits() {
               <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--ink-dim)]">
                 DISTRIBUTION CHANNELS
               </div>
-              {socials.map((s) => (
-                <a
-                  key={s.role}
-                  href={s.href}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="group flex items-center justify-between border-b border-[var(--ink)]/10 py-3 transition hover:border-[var(--ink)]"
-                >
-                  <div className="flex items-center gap-3">
-                    <TechLogo slug={s.slug} name={s.role} color="#1a1612" />
-                    <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--ink-dim)] transition group-hover:text-[var(--ink)]">
-                      {s.label}
-                    </span>
-                  </div>
-                  <ArrowUpRight
-                    size={13}
-                    className="text-[var(--ink-faint)] transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--ink)]"
-                  />
-                </a>
-              ))}
+              {socials.map((s) => {
+                const Icon = ICON_MAP[s.slug] || SiGmail
+                return (
+                  <a
+                    key={s.role}
+                    href={s.href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="group flex items-center justify-between border-b border-[var(--ink)]/10 py-3 transition hover:border-[var(--ink)]"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Icon size={14} className="text-[var(--ink)] transition-colors group-hover:text-[var(--terracotta)]" />
+                      <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--ink-dim)] transition group-hover:text-[var(--ink)]">
+                        {s.role} — {s.label}
+                      </span>
+                    </div>
+                    <ArrowUpRight
+                      size={13}
+                      className="text-[var(--ink-faint)] transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--ink)]"
+                    />
+                  </a>
+                )
+              })}
             </div>
           </div>
 

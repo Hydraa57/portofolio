@@ -419,3 +419,64 @@ body {
   }
   .marquee-track { animation: none !important; }
 }
+
+/* ═════════════════════════════════════════════════════════════
+   LAURELS — festival official-selection badge
+   ═════════════════════════════════════════════════════════════ */
+.laurel {
+  color: var(--ink);
+  transition: color 0.5s ease, transform 0.5s ease;
+}
+.scene-card:hover .laurel { color: var(--terracotta); transform: scale(1.03); }
+
+/* ═════════════════════════════════════════════════════════════
+   FILMSTRIP — celluloid roll pre-footer
+   ═════════════════════════════════════════════════════════════ */
+.filmstrip-frame {
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
+  border: 1px solid rgba(26, 22, 18, 0.4);
+}
+.filmstrip-frame:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 24px -8px rgba(26, 22, 18, 0.5);
+  z-index: 2;
+}
+
+/* ═════════════════════════════════════════════════════════════
+   COLOR BARS — SMPTE test pattern overlay
+   ═════════════════════════════════════════════════════════════ */
+.color-bars {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.18s ease, visibility 0.18s ease;
+}
+.color-bars.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+.color-bars.is-active::after {
+  /* scanline overlay for retro CRT feel */
+  content: '';
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.18) 0px,
+    rgba(0,0,0,0.18) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+/* ═════════════════════════════════════════════════════════════
+   TECH SVG — hover transitions to brand color
+   ═════════════════════════════════════════════════════════════ */
+.tech-svg {
+  color: var(--ink);
+  transition: color 0.5s ease, transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.tech-item:hover .tech-svg {
+  color: var(--brand);
+  transform: scale(1.15) rotate(-3deg);
+}

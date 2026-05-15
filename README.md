@@ -2,7 +2,7 @@
 
 > Portfolio sinematik milik **Muhamad Hafidz Hidayatulloh** · AI Engineer & Full-Stack Developer.
 >
-> *Cinematic light · Act-structured · Interactive · Built for hfdz.my.id*
+> _Cinematic light · Act-structured · Interactive · Built for hfdz.my.id_
 
 ---
 
@@ -56,6 +56,7 @@ npm run preview
 ## 🚀 Deploy ke Vercel (5 menit)
 
 ### Step 1 — Push ke GitHub
+
 ```bash
 git init
 git add .
@@ -66,6 +67,7 @@ git push -u origin main
 ```
 
 ### Step 2 — Import di Vercel
+
 1. Buka [vercel.com](https://vercel.com) → **Add New** → **Project**
 2. Import repo `hfdz-portfolio`
 3. Framework preset: **Vite** (auto-detected)
@@ -74,6 +76,7 @@ git push -u origin main
 6. Klik **Deploy** — selesai dalam ~30 detik
 
 ### Step 3 — Connect Domain hfdz.my.id
+
 1. Di project Vercel → **Settings** → **Domains**
 2. Add domain: `hfdz.my.id`
 3. Vercel akan kasih instruksi DNS. Biasanya:
@@ -134,9 +137,11 @@ hfdz-final/
 ## ✏️ Customisasi
 
 ### Update data diri / kontak
-`src/data/meta.js` — ganti handle IG, nomor WA, email yang sekarang masih placeholder (`@hafidz.id`, `+62 812-XXXX-XXXX`, dll).
+
+`src/data/meta.js` — ganti handle IG, nomor WA, email yang sekarang masih placeholder (`@h_zdifah`, `+62 882 - 9162 - 3735`, dll).
 
 ### Tambah / edit project
+
 `src/data/projects.js` — tambah object baru dengan format yang sama, `Scene` component render otomatis.
 
 ```js
@@ -158,12 +163,15 @@ hfdz-final/
 ```
 
 ### Update tech stack
+
 `src/data/tech.js` — slug logo cari di [simpleicons.org](https://simpleicons.org).
 
 ### Ganti foto profil
+
 Replace `src/assets/portrait.png` dengan foto baru (rasio bebas, tapi 9:14 atau 4:5 paling pas untuk Origin layout).
 
 ### Ganti palette warna
+
 `src/index.css` baris 7-22 — ubah CSS custom properties (`--paper`, `--ink`, `--terracotta`, dll).
 
 ---
@@ -173,23 +181,25 @@ Replace `src/assets/portrait.png` dengan foto baru (rasio bebas, tapi 9:14 atau 
 Saat ini pakai `mailto:` fallback. Untuk production sebaiknya pakai service real. Pilihan:
 
 ### Formspree (paling gampang, gratis 50/bulan)
+
 1. Daftar di [formspree.io](https://formspree.io), buat form, dapatkan endpoint URL.
 2. Di `src/components/Credits.jsx`, replace fungsi `handleSubmit`:
 
 ```jsx
 const handleSubmit = async (e) => {
-  e.preventDefault()
-  setStatus('sending')
-  const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+  e.preventDefault();
+  setStatus("sending");
+  const res = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(form),
-  })
-  if (res.ok) setStatus('sent')
-}
+  });
+  if (res.ok) setStatus("sent");
+};
 ```
 
 ### Alternative
+
 - [Web3Forms](https://web3forms.com) — gratis unlimited
 - [Resend](https://resend.com) — kalau pakai own domain email
 
@@ -197,21 +207,21 @@ const handleSubmit = async (e) => {
 
 ## 🎯 Interactivity Reference
 
-| Aksi | Yang Terjadi |
-|---|---|
-| Mouse desktop | Custom reticle cursor follow cursor |
-| Hover link / button | Cursor jadi `+` |
-| Hover project frame | Cursor jadi brackets `[ ]` |
-| Hover heading | Cursor jadi text-cursor `\|` |
-| Hover project frame | Screenshot website asli muncul + scanline sweep |
-| Hover CTA "Press play" | Tombol magnetic ke cursor + shimmer effect |
-| Hover hero headline | Letter spacing tightens + warna jadi terracotta |
-| Hover tech logo | Logo mono → warna brand asli + scale & rotate halus |
-| **Tekan `C`** | Layar flash "Cut!" 0.36s (film cut) |
-| **Tahan `B`** | SMPTE color bars muncul (test pattern TV jadul) |
-| Klik scrubber bawah | Scroll ke posisi yang di-klik |
-| Scroll | Timecode counter naik, progress bar fill, reveal animations |
-| Filmstrip pre-footer | Klik frame → scroll ke project ybs |
+| Aksi                   | Yang Terjadi                                                |
+| ---------------------- | ----------------------------------------------------------- |
+| Mouse desktop          | Custom reticle cursor follow cursor                         |
+| Hover link / button    | Cursor jadi `+`                                             |
+| Hover project frame    | Cursor jadi brackets `[ ]`                                  |
+| Hover heading          | Cursor jadi text-cursor `\|`                                |
+| Hover project frame    | Screenshot website asli muncul + scanline sweep             |
+| Hover CTA "Press play" | Tombol magnetic ke cursor + shimmer effect                  |
+| Hover hero headline    | Letter spacing tightens + warna jadi terracotta             |
+| Hover tech logo        | Logo mono → warna brand asli + scale & rotate halus         |
+| **Tekan `C`**          | Layar flash "Cut!" 0.36s (film cut)                         |
+| **Tahan `B`**          | SMPTE color bars muncul (test pattern TV jadul)             |
+| Klik scrubber bawah    | Scroll ke posisi yang di-klik                               |
+| Scroll                 | Timecode counter naik, progress bar fill, reveal animations |
+| Filmstrip pre-footer   | Klik frame → scroll ke project ybs                          |
 
 ---
 
@@ -229,4 +239,4 @@ MIT — bebas dipakai dan dimodifikasi.
 
 ---
 
-*Crafted dengan kopi tubruk, banyak refactor, dan rasa ingin tahu yang belum habis.*
+_Crafted dengan kopi tubruk, banyak refactor, dan rasa ingin tahu yang belum habis._

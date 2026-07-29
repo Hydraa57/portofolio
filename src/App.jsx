@@ -80,11 +80,11 @@ export default function App() {
             act="III"
             latin="PARS TERTIA"
             english="Selected works."
-            indonesian="Tiga karya — bukan portofolio, tapi reel."
+            indonesian="Lima karya — bukan portofolio, tapi reel."
           />
           <section id="scenes">
             {projects.map((p, i) => (
-              <Scene key={p.slug} project={p} reversed={i % 2 === 1} />
+              <Scene key={p.slug} project={p} reversed={i % 2 === 1} total={projects.length} />
             ))}
           </section>
 

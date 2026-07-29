@@ -121,7 +121,7 @@ hfdz-final/
 │   │   └── useCutKey.js            # easter egg
 │   └── data/
 │       ├── meta.js                 # personal info, socials
-│       ├── projects.js             # 3 projects (Nayyira, Dashboard, FacePresent)
+│       ├── projects.js             # 5 projects (Nayyira, Dashboard, FacePresent, AURA, Pixel Matrix)
 │       └── tech.js                 # equipment manifest
 ├── index.html                      # SEO, OG meta, fonts
 ├── vite.config.js

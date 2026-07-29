@@ -75,6 +75,53 @@ export const projects = [
     highlight:
       "Verifikasi identitas real-time tanpa hardware tambahan — hanya kamera tab/laptop.",
   },
+  {
+    no: "04",
+    slug: "aura",
+    title: "AURA",
+    tagline: "Suara yang menjaga pasar, saat pasar tak pernah tidur.",
+    synopsis:
+      "Pasar bergerak terus meski kita tidur, tapi tak seorang pun sanggup menatap layar selama itu. AURA — dari 'Aurum', emas — adalah asisten suara pribadi yang diajak bicara seperti manusia: menanyakan kabar IHSG, meminta briefing pasar pagi, menyuruhnya membuka lima berita sekaligus jadi dinding jendela sinematik di layar. Ia bicara dua bahasa dengan suara yang bisa diganti di tengah percakapan, dan di baliknya ada rantai fallback empat penyedia LLM supaya ia tidak pernah bisu saat satu layanan tumbang.",
+    what_i_built:
+      "Asisten suara end-to-end di atas Python: wake word yang berjalan offline, percakapan real-time via Gemini Live, dan dua puluh lebih tool yang bisa dipanggil model — dari briefing finansial, analisa mendalam portofolio, kontrol PC dan smart home (Home Assistant + Tuya IR), sampai dashboard remote yang bisa dibuka dari HP lewat Cloudflare Tunnel dengan enkripsi AES di lapisan aplikasi.",
+    stack: ["Python", "Gemini Live", "PyQt6", "FastAPI", "Vosk", "Home Assistant"],
+    palette: { from: "#e6dcc0", via: "#c0a765", to: "#7d6428" },
+    links: {
+      // Landing page sudah dibuat, belum di-hosting.
+      // Begitu live, ganti null di bawah dengan URL-nya — Scene otomatis
+      // memunculkan badge LIVE, tombol "View live", dan hover screenshot.
+      live: null,
+      github: null, // private repo
+    },
+    year: "2026",
+    runtime: null,
+    aperture: "f/4.0",
+    status: "beta",
+    highlight:
+      "Satu perintah suara: berita terbuka, portofolio terbaca, lampu rumah menyala.",
+  },
+  {
+    no: "05",
+    slug: "pixel-matrix",
+    title: "Pixel Matrix",
+    tagline: "Empat HP, satu papan, dan tak ada yang mau mengalah.",
+    synopsis:
+      "Game nongkrong biasanya berakhir sama: satu orang install, sisanya menyerah di halaman App Store. Pixel Matrix menolak itu — buka browser, bagikan kode room, lalu dua sampai empat orang langsung berebut pixel di papan 8×8 yang sama, tanpa daftar dan tanpa install. Bukan sekadar adu cepat: warna target berganti, distraktor bertambah, dua warna target muncul di level 12, dan pixel bom menghukum karena disentuh — yang diuji beban mental, bukan cuma refleks jari.",
+    what_i_built:
+      "Monorepo dengan satu sumber aturan main: engine permainan hidup di paket shared dan dipakai identik oleh client solo maupun server multiplayer, jadi keduanya mustahil berbeda. Di atasnya, papan Phaser dengan HUD React yang responsif di layar kecil, server Socket.IO otoritatif yang memutus siapa lebih dulu menyentuh pixel, riwayat match lewat Prisma + PostgreSQL, UI dwibahasa, dan PWA yang bisa dipasang ke home screen.",
+    stack: ["Next.js", "Phaser", "TypeScript", "Socket.IO", "Prisma", "PostgreSQL"],
+    palette: { from: "#cfc8e0", via: "#8f86b5", to: "#3d3a5c" },
+    links: {
+      live: "https://game-casual-web.vercel.app",
+      github: "https://github.com/Hydraa57/Game-Casual",
+    },
+    year: "2026",
+    runtime: null,
+    aperture: "f/5.6",
+    status: "live",
+    highlight:
+      "Dua sampai empat pemain, satu papan rebutan, nol install — cukup bagikan kode room.",
+  },
 ];
 
 /**

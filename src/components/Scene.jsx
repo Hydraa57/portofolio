@@ -10,7 +10,7 @@ import Laurels from './Laurels.jsx'
  *
  * For projects without a live URL, falls back to the stylized film frame.
  */
-export default function Scene({ project: p, reversed = false }) {
+export default function Scene({ project: p, reversed = false, total }) {
   const [loaded, setLoaded] = useState(false)
   const hasLive   = Boolean(p.links?.live)
   const hasGithub = Boolean(p.links?.github)
@@ -25,7 +25,7 @@ export default function Scene({ project: p, reversed = false }) {
         {/* scene meta strip */}
         <div className="reveal grid items-baseline gap-3 sm:grid-cols-[auto_1fr_auto] sm:gap-10">
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--ink-dim)]">
-            SCENE {p.no} of 03
+            SCENE {p.no} of {String(total ?? 0).padStart(2, '0')}
           </span>
           <div className="hidden h-px bg-[var(--ink)]/15 sm:block" />
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--ink-dim)]">

@@ -71,7 +71,7 @@ export const projects = [
     year: "2026",
     runtime: null,
     aperture: "f/2.8",
-    status: "beta-tested",
+    status: "live",
     highlight:
       "Verifikasi identitas real-time tanpa hardware tambahan — hanya kamera tab/laptop.",
   },

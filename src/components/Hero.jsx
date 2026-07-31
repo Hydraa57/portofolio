@@ -1,9 +1,16 @@
 import { ArrowDown } from "lucide-react";
 import { meta } from "../data/meta.js";
+import { projects } from "../data/projects.js";
 import { useMagnetic } from "../hooks/useMagnetic.js";
 
+// Dihitung dari data project, bukan diketik. Angka ini pernah tertinggal di "3"
+// sampai project kelima terbit — dan karena CSS yang meng-uppercase labelnya,
+// pencarian huruf besar tidak menemukannya. Diturunkan dari data supaya tidak
+// ada lagi angka yang harus diingat untuk diperbarui.
+const LIVE = projects.filter((p) => p.status === "live").length;
+
 const STATS = [
-  { k: "3", v: "Live products" },
+  { k: String(LIVE), v: "Live products" },
   { k: "∞", v: "Automation runs" },
   { k: "BKS", v: "Indonesia · UTC+7" },
 ];

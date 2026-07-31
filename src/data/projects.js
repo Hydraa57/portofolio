@@ -68,22 +68,35 @@ export const projects = [
     status: "live",
     highlight:
       "Data dari WhatsApp, terbaca di dashboard, menuju .apk — satu ekosistem terpadu.",
-    // ── PERLU TANGKAPAN LAYAR DARI KAMU ────────────────────────────────
-    // Isi dashboard ada di balik login, jadi tidak bisa difoto otomatis.
-    // Screenshot sendiri (login dulu), simpan ke /public/shots/, lalu ganti
-    // entri di bawah. Maksimal 5, satu fitur per gambar. Saran urutannya:
-    //   dashboard-1-ringkasan.png   → ringkasan saldo + grafik pengeluaran
-    //   dashboard-2-input-ai.png    → input transaksi pakai AI
-    //   dashboard-3-kategori.png    → breakdown per kategori
-    //   dashboard-4-investasi.png   → monitoring portofolio investasi
-    //   dashboard-5-tren.png        → tren bulanan
-    // Formatnya: { img: '/shots/dashboard-2-input-ai.png', title: '…', note: '…' }
-    // Sementara belum ada, halaman masuknya yang tampil.
+    poster: "/shots/dashboard-1-ringkasan.webp",
+    // Angka pada tangkapan layar ini DATA DEMO, bukan keuangan sungguhan.
+    // Antarmukanya asli — dijalankan dari repo, lalu API-nya dibalas data contoh.
+    // Saldo pribadi tidak layak dipajang di portofolio publik.
     shots: [
       {
-        page: "https://dashboard.nayyiraai.online",
-        title: "Halaman masuk",
-        note: "Pintu autentikasi dashboard. Isinya — chart pengeluaran, tren bulanan, breakdown kategori, dan monitoring portofolio investasi — ada di balik login.",
+        img: "/shots/dashboard-1-ringkasan.webp",
+        title: "Ringkasan bulan berjalan",
+        note: "Surplus, pemasukan, pengeluaran, dan savings rate dalam satu layar, lengkap dengan tren harian dan kategori terbesar. Angka pada gambar ini data contoh, bukan keuangan sungguhan.",
+      },
+      {
+        img: "/shots/dashboard-5-catat-ai.webp",
+        title: "Catat transaksi pakai AI",
+        note: "Tulis apa adanya — \"beli kopi sama makan siang 85 ribu tadi\" — dan AI yang memecahnya jadi nominal, kategori, dan tanggal. Bisa juga lewat suara atau foto struk.",
+      },
+      {
+        img: "/shots/dashboard-2-transaksi.webp",
+        title: "Daftar transaksi",
+        note: "Seluruh transaksi bulan berjalan, tersinkron dari Google Sheets yang diisi lewat WhatsApp. Bisa disaring per bulan, disunting, dan dihapus langsung dari sini.",
+      },
+      {
+        img: "/shots/dashboard-3-investasi.webp",
+        title: "Portofolio investasi",
+        note: "Saham IDX, kripto, reksadana, dan emas dalam satu papan: modal, nilai sekarang, dan untung-rugi per aset. Harga ditarik otomatis dan dikonversi ke rupiah.",
+      },
+      {
+        img: "/shots/dashboard-4-insights.webp",
+        title: "Insight otomatis",
+        note: "Sistem membaca pola belanja dan menyimpulkan sendiri — kategori yang membengkak, rasio tabungan yang membaik, anggaran yang masih aman — tanpa perlu ditanya.",
       },
     ],
   },

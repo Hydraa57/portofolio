@@ -480,3 +480,37 @@ body {
   color: var(--brand);
   transform: scale(1.15) rotate(-3deg);
 }
+
+/* ────────────────────────────────────────────────────────────
+   CONTACT SHEET — screenshot strip + lightbox under each scene
+   ──────────────────────────────────────────────────────────── */
+
+/* Hide the scrollbar; the "geser →" label carries the affordance instead. */
+.shot-strip::-webkit-scrollbar { display: none; }
+.shot-strip {
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+.shot-strip > button { scroll-snap-align: start; }
+
+/* Native <dialog>: Esc, focus trap and backdrop come from the platform. */
+.shot-dialog {
+  width: min(920px, 92vw);
+  max-height: 88vh;
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 40px 120px rgba(26, 22, 18, 0.45);
+}
+.shot-dialog::backdrop {
+  background: rgba(26, 22, 18, 0.72);
+  backdrop-filter: blur(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shot-strip { scroll-behavior: auto; }
+}

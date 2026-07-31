@@ -4,10 +4,18 @@
  *
  * Items mix serif italic + mono caps for cinematic typography contrast.
  */
+import { projects } from '../data/projects.js'
+
+// Counted from the project data, not typed in. It read "3" long after the
+// fourth and fifth shipped; deriving it means that cannot happen again.
+const LIVE = projects.filter((p) => p.status === 'live').length
+
 const ITEMS = [
   { text: 'Available for collaboration',  style: 'italic' },
   { text: '★',                              style: 'symbol' },
-  { text: '3 LIVE PRODUCTS',                style: 'mono' },
+  { text: `${LIVE} LIVE PRODUCTS`,          style: 'mono' },
+  { text: '★',                              style: 'symbol' },
+  { text: `${projects.length} PROJECTS SHIPPED`, style: 'mono' },
   { text: '★',                              style: 'symbol' },
   { text: 'AI engineering',                 style: 'italic' },
   { text: '★',                              style: 'symbol' },

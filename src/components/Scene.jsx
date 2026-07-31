@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { ArrowUpRight, ExternalLink, Eye } from 'lucide-react'
 import Laurels from './Laurels.jsx'
+import Shots from './Shots.jsx'
+import { mshot } from '../lib/shot.js'
 
 /**
  * Scene — single project card with hover-reveal live screenshot.
@@ -14,9 +16,10 @@ export default function Scene({ project: p, reversed = false, total }) {
   const [loaded, setLoaded] = useState(false)
   const hasLive   = Boolean(p.links?.live)
   const hasGithub = Boolean(p.links?.github)
-  const screenshot = hasLive
-    ? `https://s.wordpress.com/mshots/v1/${encodeURIComponent(p.links.live)}?w=1280&h=800`
-    : null
+  // Built through the shared helper so this is byte-identical to what the
+  // preloader already fetched during the intro — otherwise it is a cache miss
+  // and the visitor waits for mShots all over again.
+  const screenshot = hasLive ? mshot(p.links.live) : null
 
   return (
     <article className="scene-card border-t border-[var(--ink)]/15 px-5 py-20 sm:px-8 sm:py-24">
@@ -116,7 +119,8 @@ export default function Scene({ project: p, reversed = false, total }) {
                     alt={`Preview ${p.title}`}
                     className="absolute inset-0 h-full w-full object-cover opacity-0 transition-all duration-1000 group-hover:opacity-100 group-hover:scale-[1.02]"
                     onLoad={() => setLoaded(true)}
-                    loading="lazy"
+                    loading="eager"
+                    decoding="async"
                   />
                   {/* vignette over screenshot */}
                   <div
@@ -141,7 +145,9 @@ export default function Scene({ project: p, reversed = false, total }) {
             {/* caption under frame */}
             <div className="mt-3 flex items-baseline justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--ink-dim)]">
               <span>FIG. {p.no} — {p.title.toUpperCase()}</span>
-              <span>{hasLive ? '↗ HOVER' : '— PRIVATE'}</span>
+              {/* The preview is fetched during the intro, so by the time anyone
+                  reads this it is normally already developed. */}
+              <span>{hasLive ? (loaded ? '↗ HOVER' : 'DEVELOPING…') : '— PRIVATE'}</span>
             </div>
           </div>
 
@@ -232,6 +238,9 @@ export default function Scene({ project: p, reversed = false, total }) {
             </div>
           </div>
         </div>
+
+        {/* Contact sheet spans both columns — a strip needs the width to scroll. */}
+        <Shots shots={p.shots} project={p.title} />
       </div>
     </article>
   )

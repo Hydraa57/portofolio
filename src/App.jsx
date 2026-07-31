@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useReveal }    from './hooks/useReveal.js'
 import { useCutKey }    from './hooks/useCutKey.js'
 import { useColorBars } from './hooks/useColorBars.js'
+import { usePreload }   from './hooks/usePreload.js'
 import { projects }     from './data/projects.js'
+import { mshot, shotSrc } from './lib/shot.js'
 
 import Intro        from './components/Intro.jsx'
 import Slate        from './components/Slate.jsx'
@@ -24,6 +26,19 @@ export default function App() {
   const cutting   = useCutKey()
   const barsOn    = useColorBars()
 
+  /**
+   * Every preview the page will ever show, fetched while the intro is up.
+   * Scene hover previews first — those are what a visitor hits soonest — then
+   * the contact-sheet thumbnails under each scene.
+   */
+  const previews = useMemo(() => {
+    const live = projects.filter((p) => p.links?.live).map((p) => mshot(p.links.live))
+    const thumbs = projects.flatMap((p) => (p.shots ?? []).map((s) => shotSrc(s, true)))
+    return [...new Set([...live, ...thumbs])]
+  }, [])
+
+  const preload = usePreload(previews)
+
   useEffect(() => {
     const t = setTimeout(() => setIntroDone(true), 2450)
     return () => clearTimeout(t)
@@ -34,7 +49,7 @@ export default function App() {
   return (
     <>
       <Cursor />
-      <Intro done={introDone} />
+      <Intro done={introDone} preload={preload} />
 
       {/* Press C → cut! flash */}
       <div

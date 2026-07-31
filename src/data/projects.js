@@ -5,6 +5,12 @@
  * `palette` = warna gradient untuk visual frame (from/via/to).
  * `slug`    = dipakai untuk future /work/[slug] routing.
  * `status`  = 'live' | 'beta' | 'wip'
+ *
+ * `shots`   = contact sheet di bawah tiap scene. Dua bentuk:
+ *               { page: 'https://…' }  → difoto otomatis lewat mShots
+ *               { img:  '/shots/x.png' } → file sendiri di /public/shots/
+ *             Pakai `img` kalau halamannya butuh login, atau kalau mau
+ *             menampilkan bagian yang tidak bisa dijangkau URL publik.
  * ─────────────────────────────────────────────────────────────
  */
 export const projects = [
@@ -29,6 +35,16 @@ export const projects = [
     status: "live",
     highlight:
       "Otomatisasi penuh dari teks bebas → structured financial record via WhatsApp.",
+    // Tambah entri di sini kalau ada halaman lain yang publik, atau taruh
+    // tangkapan layar percakapan WhatsApp-nya di /public/shots/ lalu pakai
+    // { img: '/shots/nama.png' } — chat pribadi jelas tidak bisa difoto mShots.
+    shots: [
+      {
+        page: "https://nayyiraai.online",
+        title: "Landing page",
+        note: "Halaman produk: menjelaskan cara kerjanya dalam satu layar — kirim pesan biasa, AI-nya yang mencatat dan mengkategorikan.",
+      },
+    ],
   },
   {
     no: "02",
@@ -52,6 +68,16 @@ export const projects = [
     status: "live",
     highlight:
       "Data dari WhatsApp, terbaca di dashboard, menuju .apk — satu ekosistem terpadu.",
+    // Isi dashboard ada di balik login, jadi mShots hanya sampai halaman masuk.
+    // Untuk memperlihatkan chart dan breakdown-nya, simpan tangkapan layar di
+    // /public/shots/ lalu tambahkan { img: '/shots/nama.png' } di bawah.
+    shots: [
+      {
+        page: "https://dashboard.nayyiraai.online",
+        title: "Halaman masuk",
+        note: "Pintu autentikasi dashboard. Isinya — chart pengeluaran, tren bulanan, breakdown kategori, dan monitoring portofolio — ada di balik login.",
+      },
+    ],
   },
   {
     no: "03",
@@ -74,6 +100,13 @@ export const projects = [
     status: "live",
     highlight:
       "Verifikasi identitas real-time tanpa hardware tambahan — hanya kamera tab/laptop.",
+    shots: [
+      {
+        page: "https://absensi.hfdz.my.id",
+        title: "Halaman absensi",
+        note: "Titik masuk sistem: kamera menangkap wajah, model memverifikasi identitas, kehadiran tercatat dengan timestamp — tanpa tanda tangan atau isi link.",
+      },
+    ],
   },
   {
     no: "04",
@@ -99,6 +132,10 @@ export const projects = [
     status: "beta",
     highlight:
       "Satu perintah suara: berita terbuka, portofolio terbaca, lampu rumah menyala.",
+    // Kosong sampai landing page-nya hidup. Begitu live, cukup tambahkan
+    // { page: 'https://aura-...', title: '…', note: '…' } — contact sheet-nya
+    // muncul sendiri, dan halaman yang kosong tidak merender apa pun.
+    shots: [],
   },
   {
     no: "05",
@@ -121,6 +158,30 @@ export const projects = [
     status: "live",
     highlight:
       "Dua sampai empat pemain, satu papan rebutan, nol install — cukup bagikan kode room.",
+    // Rute-rute ini diverifikasi ada di repo (apps/web/src/app/[locale]/),
+    // default locale-nya "id".
+    shots: [
+      {
+        page: "https://game-casual-web.vercel.app/id",
+        title: "Halaman depan",
+        note: "Pintu masuk: main solo langsung, atau buat/gabung room lewat kode. Tanpa daftar, tanpa install — syarat utama yang membentuk seluruh arsitekturnya.",
+      },
+      {
+        page: "https://game-casual-web.vercel.app/id/play/solo",
+        title: "Mode solo",
+        note: "Papan 8×8, HUD React di atas canvas Phaser. Kurva kesulitan sampai Lv 20, pixel bom yang menghukum karena disentuh, dan dua warna target mulai Lv 12.",
+      },
+      {
+        page: "https://game-casual-web.vercel.app/id/leaderboard",
+        title: "Papan skor",
+        note: "Skor solo tersimpan di localStorage saat tanpa database, dan naik ke PostgreSQL lewat Prisma begitu DATABASE_URL diset.",
+      },
+      {
+        page: "https://game-casual-web.vercel.app/id/about",
+        title: "Tentang & aturan main",
+        note: "Aturan permainan dijelaskan dari satu sumber yang sama dengan yang dipakai engine — packages/shared, dipakai identik oleh client dan server.",
+      },
+    ],
   },
 ];
 

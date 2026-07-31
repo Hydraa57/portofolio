@@ -3,6 +3,7 @@ import { ArrowUpRight, ExternalLink, Eye } from 'lucide-react'
 import Laurels from './Laurels.jsx'
 import Shots from './Shots.jsx'
 import { mshot } from '../lib/shot.js'
+import { useShotSrc } from '../hooks/useShotSrc.js'
 
 /**
  * Scene — single project card with hover-reveal live screenshot.
@@ -16,10 +17,14 @@ export default function Scene({ project: p, reversed = false, total }) {
   const [loaded, setLoaded] = useState(false)
   const hasLive   = Boolean(p.links?.live)
   const hasGithub = Boolean(p.links?.github)
-  // Built through the shared helper so this is byte-identical to what the
-  // preloader already fetched during the intro — otherwise it is a cache miss
-  // and the visitor waits for mShots all over again.
-  const screenshot = hasLive ? mshot(p.links.live) : null
+  /**
+   * A `poster` is a real screenshot committed to /public — instant, and never
+   * the "Generating Preview…" placeholder. Projects without one fall back to
+   * mShots, built through the shared helper so the URL is byte-identical to
+   * what the preloader fetched during the intro; any difference is a cache miss
+   * and the visitor waits for mShots all over again.
+   */
+  const screenshot = useShotSrc(p.poster ?? (hasLive ? mshot(p.links.live) : null))
 
   return (
     <article className="scene-card border-t border-[var(--ink)]/15 px-5 py-20 sm:px-8 sm:py-24">

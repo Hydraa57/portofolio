@@ -1,6 +1,42 @@
 import { useEffect, useRef, useState } from 'react'
 import { X, ArrowUpRight } from 'lucide-react'
 import { shotSrc } from '../lib/shot.js'
+import { useShotSrc } from '../hooks/useShotSrc.js'
+
+/**
+ * One frame in the strip. Split into its own component because the retry hook
+ * has to run per thumbnail, and hooks cannot be called from inside a map.
+ */
+function Thumb({ shot, index, project, onOpen }) {
+  const src = useShotSrc(shotSrc(shot, true))
+
+  return (
+    <button
+      type="button"
+      onClick={onOpen}
+      aria-haspopup="dialog"
+      data-cursor="frame"
+      className="group relative w-[168px] shrink-0 border border-[var(--ink)]/25 bg-[var(--paper-warm)] text-left transition-colors hover:border-[var(--ink)]"
+    >
+      <div className="relative aspect-[16/10] overflow-hidden bg-[var(--paper-warm)]">
+        <img
+          src={src}
+          alt={`${project} — ${shot.title}`}
+          loading="eager"
+          decoding="async"
+          className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
+        />
+        {/* crop marks, same language as the scene frames */}
+        <span className="crop-tl absolute left-1.5 top-1.5 h-2.5 w-2.5" />
+        <span className="crop-br absolute bottom-1.5 right-1.5 h-2.5 w-2.5" />
+      </div>
+      <div className="border-t border-[var(--ink)]/15 px-2 py-1.5 font-mono text-[9px] uppercase tracking-[0.15em] text-[var(--ink-dim)]">
+        <span className="text-[var(--ink)]">{String(index + 1).padStart(2, '0')}</span>{' '}
+        {shot.title}
+      </div>
+    </button>
+  )
+}
 
 /**
  * Shots — contact sheet under a scene.
@@ -24,6 +60,10 @@ export default function Shots({ shots = [], project }) {
     el.addEventListener('close', onClose)
     return () => el.removeEventListener('close', onClose)
   }, [])
+
+  // Hooks must run unconditionally, so the full-size src is resolved before the
+  // early return below.
+  const full = useShotSrc(open === null ? null : shotSrc(shots[open]))
 
   if (!shots.length) return null
 
@@ -52,31 +92,13 @@ export default function Shots({ shots = [], project }) {
         style={{ scrollbarWidth: 'none' }}
       >
         {shots.map((s, i) => (
-          <button
+          <Thumb
             key={s.title}
-            type="button"
-            onClick={() => show(i)}
-            aria-haspopup="dialog"
-            data-cursor="frame"
-            className="group relative w-[168px] shrink-0 border border-[var(--ink)]/25 bg-[var(--paper-warm)] text-left transition-colors hover:border-[var(--ink)]"
-          >
-            <div className="relative aspect-[16/10] overflow-hidden bg-[var(--paper-warm)]">
-              <img
-                src={shotSrc(s, true)}
-                alt={`${project} — ${s.title}`}
-                loading="eager"
-                decoding="async"
-                className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
-              />
-              {/* crop marks, same language as the scene frames */}
-              <span className="crop-tl absolute left-1.5 top-1.5 h-2.5 w-2.5" />
-              <span className="crop-br absolute bottom-1.5 right-1.5 h-2.5 w-2.5" />
-            </div>
-            <div className="border-t border-[var(--ink)]/15 px-2 py-1.5 font-mono text-[9px] uppercase tracking-[0.15em] text-[var(--ink-dim)]">
-              <span className="text-[var(--ink)]">{String(i + 1).padStart(2, '0')}</span>{' '}
-              {s.title}
-            </div>
-          </button>
+            shot={s}
+            index={i}
+            project={project}
+            onOpen={() => show(i)}
+          />
         ))}
       </div>
 
@@ -111,7 +133,7 @@ export default function Shots({ shots = [], project }) {
             </div>
 
             <img
-              src={shotSrc(active)}
+              src={full}
               alt={`${project} — ${active.title}`}
               className="block max-h-[62vh] w-full bg-[var(--paper-warm)] object-contain"
             />

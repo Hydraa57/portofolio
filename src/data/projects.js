@@ -68,14 +68,22 @@ export const projects = [
     status: "live",
     highlight:
       "Data dari WhatsApp, terbaca di dashboard, menuju .apk — satu ekosistem terpadu.",
-    // Isi dashboard ada di balik login, jadi mShots hanya sampai halaman masuk.
-    // Untuk memperlihatkan chart dan breakdown-nya, simpan tangkapan layar di
-    // /public/shots/ lalu tambahkan { img: '/shots/nama.png' } di bawah.
+    // ── PERLU TANGKAPAN LAYAR DARI KAMU ────────────────────────────────
+    // Isi dashboard ada di balik login, jadi tidak bisa difoto otomatis.
+    // Screenshot sendiri (login dulu), simpan ke /public/shots/, lalu ganti
+    // entri di bawah. Maksimal 5, satu fitur per gambar. Saran urutannya:
+    //   dashboard-1-ringkasan.png   → ringkasan saldo + grafik pengeluaran
+    //   dashboard-2-input-ai.png    → input transaksi pakai AI
+    //   dashboard-3-kategori.png    → breakdown per kategori
+    //   dashboard-4-investasi.png   → monitoring portofolio investasi
+    //   dashboard-5-tren.png        → tren bulanan
+    // Formatnya: { img: '/shots/dashboard-2-input-ai.png', title: '…', note: '…' }
+    // Sementara belum ada, halaman masuknya yang tampil.
     shots: [
       {
         page: "https://dashboard.nayyiraai.online",
         title: "Halaman masuk",
-        note: "Pintu autentikasi dashboard. Isinya — chart pengeluaran, tren bulanan, breakdown kategori, dan monitoring portofolio — ada di balik login.",
+        note: "Pintu autentikasi dashboard. Isinya — chart pengeluaran, tren bulanan, breakdown kategori, dan monitoring portofolio investasi — ada di balik login.",
       },
     ],
   },
@@ -120,22 +128,43 @@ export const projects = [
     stack: ["Python", "Gemini Live", "PyQt6", "FastAPI", "Vosk", "Home Assistant"],
     palette: { from: "#e6dcc0", via: "#c0a765", to: "#7d6428" },
     links: {
-      // Landing page sudah dibuat, belum di-hosting.
-      // Begitu live, ganti null di bawah dengan URL-nya — Scene otomatis
-      // memunculkan badge LIVE, tombol "View live", dan hover screenshot.
-      live: null,
-      github: null, // private repo
+      live: "https://aura.hfdz.my.id",
+      github: "https://github.com/Hydraa57/aura",
     },
     year: "2026",
     runtime: null,
     aperture: "f/4.0",
-    status: "beta",
+    status: "live",
     highlight:
       "Satu perintah suara: berita terbuka, portofolio terbaca, lampu rumah menyala.",
-    // Kosong sampai landing page-nya hidup. Begitu live, cukup tambahkan
-    // { page: 'https://aura-...', title: '…', note: '…' } — contact sheet-nya
-    // muncul sendiri, dan halaman yang kosong tidak merender apa pun.
-    shots: [],
+    poster: "/shots/aura-2-hud.webp",
+    shots: [
+      {
+        img: "/shots/aura-1-hero.webp",
+        title: "Apa itu AURA",
+        note: "Asisten suara real-time bergaya JARVIS: mendengar lewat mikrofon, menjawab dengan suara, dan mengendalikan komputer serta rumah pintar lewat percakapan biasa. Dibangun dari nol dengan Python, PyQt6, dan Gemini Live.",
+      },
+      {
+        img: "/shots/aura-2-hud.webp",
+        title: "Antarmuka saat berjalan",
+        note: "Kokpitnya: diagnostik CPU/RAM/GPU/suhu di kiri, neural core di tengah yang bereaksi pada suara, activity log dan portofolio pasar di kanan. Suara dan bahasa bisa diganti di tengah percakapan.",
+      },
+      {
+        img: "/shots/aura-3-demo.webp",
+        title: "Cara bicaranya",
+        note: "Empat percakapan nyata: mengganti suara dan bahasa, meminta briefing pasar, menyalakan perangkat rumah, dan menanyakan apa yang sedang tampil di layar.",
+      },
+      {
+        img: "/shots/aura-4-caps.webp",
+        title: "27 tool yang bisa dipanggil",
+        note: "Model memilih sendiri tool yang tepat dari maksud ucapan — tanpa perintah kaku. Terbagi delapan wilayah: finansial, rumah pintar, kontrol komputer, visi & berkas, web & media, produktivitas, ngoding, sistem & suara.",
+      },
+      {
+        img: "/shots/aura-5-arch.webp",
+        title: "Dari suara ke aksi",
+        note: "Alurnya: wake word offline (Vosk) → percakapan real-time Gemini Live → pemilihan tool → eksekusi lokal → balasan diucapkan sambil disusun. Semuanya dikejar agar tetap di bawah satu detik.",
+      },
+    ],
   },
   {
     no: "05",
@@ -158,28 +187,32 @@ export const projects = [
     status: "live",
     highlight:
       "Dua sampai empat pemain, satu papan rebutan, nol install — cukup bagikan kode room.",
-    // Rute-rute ini diverifikasi ada di repo (apps/web/src/app/[locale]/),
-    // default locale-nya "id".
+    poster: "/shots/pixel-3-tantangan.webp",
     shots: [
       {
-        page: "https://game-casual-web.vercel.app/id",
-        title: "Halaman depan",
-        note: "Pintu masuk: main solo langsung, atau buat/gabung room lewat kode. Tanpa daftar, tanpa install — syarat utama yang membentuk seluruh arsitekturnya.",
+        img: "/shots/pixel-1-menu.webp",
+        title: "Masuk tanpa daftar",
+        note: "Buka browser, pilih main sebagai guest, langsung main. Tanpa install, tanpa akun — syarat inilah yang membentuk seluruh arsitekturnya: database tidak pernah boleh jadi prasyarat bermain.",
       },
       {
-        page: "https://game-casual-web.vercel.app/id/play/solo",
-        title: "Mode solo",
-        note: "Papan 8×8, HUD React di atas canvas Phaser. Kurva kesulitan sampai Lv 20, pixel bom yang menghukum karena disentuh, dan dua warna target mulai Lv 12.",
+        img: "/shots/pixel-2-solo.webp",
+        title: "Main solo",
+        note: "Papan 8×8 di canvas Phaser dengan HUD React. Klik pixel yang warnanya sama dengan target sebelum memudar; makin cepat makin banyak poin. Tiga nyawa, salah tap kurang satu.",
       },
       {
-        page: "https://game-casual-web.vercel.app/id/leaderboard",
-        title: "Papan skor",
-        note: "Skor solo tersimpan di localStorage saat tanpa database, dan naik ke PostgreSQL lewat Prisma begitu DATABASE_URL diset.",
+        img: "/shots/pixel-3-tantangan.webp",
+        title: "Tantangannya",
+        note: "Level 14: dua warna target sekaligus (RED + YELLOW), pixel bom yang menghukum justru karena disentuh, dan pixel emas berlipat poin. Yang diuji beban mental, bukan cuma kecepatan jari.",
       },
       {
-        page: "https://game-casual-web.vercel.app/id/about",
-        title: "Tentang & aturan main",
-        note: "Aturan permainan dijelaskan dari satu sumber yang sama dengan yang dipakai engine — packages/shared, dipakai identik oleh client dan server.",
+        img: "/shots/pixel-4-lobby.webp",
+        title: "Main bareng teman",
+        note: "Buat room, bagikan kodenya, 2–4 orang bergabung dari HP masing-masing. Bisa atur target skor dan batas waktu; match mulai setelah semua menekan siap.",
+      },
+      {
+        img: "/shots/pixel-5-match.webp",
+        title: "Rebutan satu papan",
+        note: "Semua pemain berebut pixel di papan yang sama, dengan ping tiap orang tampil di layar. Server Socket.IO yang otoritatif memutus siapa lebih dulu menyentuh — bukan browser masing-masing.",
       },
     ],
   },

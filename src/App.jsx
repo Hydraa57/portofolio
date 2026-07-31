@@ -32,9 +32,11 @@ export default function App() {
    * the contact-sheet thumbnails under each scene.
    */
   const previews = useMemo(() => {
-    const live = projects.filter((p) => p.links?.live).map((p) => mshot(p.links.live))
+    const frames = projects
+      .map((p) => p.poster ?? (p.links?.live ? mshot(p.links.live) : null))
+      .filter(Boolean)
     const thumbs = projects.flatMap((p) => (p.shots ?? []).map((s) => shotSrc(s, true)))
-    return [...new Set([...live, ...thumbs])]
+    return [...new Set([...frames, ...thumbs])]
   }, [])
 
   const preload = usePreload(previews)

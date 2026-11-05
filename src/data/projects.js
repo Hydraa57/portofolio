@@ -250,19 +250,34 @@ export const projects = [
     status: "live",
     highlight:
       "Setiap kali pengguna memasukkan sesuatu, dia harus langsung menerima sesuatu — di kasir, yang diterima itu struk.",
-    poster: "/shots/ezura-1-gerbang.webp",
-    // Layar kasirnya ada di balik pembuatan akun, jadi yang bisa difoto dari
-    // situs live hanya dua halaman publiknya. Sisanya menyusul.
+    poster: "/shots/ezura-2-kasir.webp",
+    // Dipotret dari aplikasinya sendiri yang dijalankan lokal dengan data
+    // contoh — kode yang sama dengan yang tayang di ezura.hfdz.my.id.
     shots: [
       {
-        img: "/shots/ezura-1-gerbang.webp",
-        title: "Halaman depan",
-        note: "Satu kalimat yang menyebut keduanya sekaligus — barang dan jasa — karena di situlah bedanya dengan kasir lain, dan karena usaha mikro Indonesia jarang murni satu jenis.",
+        img: "/shots/ezura-1-katalog.webp",
+        title: "Barang dan jasa, satu daftar",
+        note: "Di sinilah bedanya terlihat: barang menyebut sisanya (\"Sisa 24 pcs\"), jasa tidak menyebut stok sama sekali — bukan nol, bukan tak terbatas. Kolomnya memang hilang dari formulir jasa, bukan dinonaktifkan.",
       },
       {
-        img: "/shots/ezura-2-cadangan.webp",
-        title: "Kenapa harus buat akun",
-        note: "Gerbangnya dijelaskan, bukan dipaksakan: catatan yang tidak pernah dicadangkan adalah catatan yang akan hilang, dan yang hilang di sini penghasilan orang. Gerbangnya cuma sekali — sesudah satu HP berhasil masuk, ia tidak pernah dikunci lagi, karena kasir yang menolak terbuka saat sinyal mati adalah kasir yang ditinggalkan hari itu juga.",
+        img: "/shots/ezura-2-kasir.webp",
+        title: "Kasir",
+        note: "Seluruh cara pakainya satu gerakan: ketuk fotonya. Jumlah menempel di pojok tiap kartu dan totalnya selalu terlihat di bawah, karena yang dikejar adalah melayani pembeli yang sedang menunggu, bukan mengisi formulir.",
+      },
+      {
+        img: "/shots/ezura-3-struk.webp",
+        title: "Struk",
+        note: "Inilah yang diterima pemiliknya setiap kali ia memasukkan sesuatu — aturan yang lahir dari produk sebelumnya yang cuma menjawab \"sudah disimpan\". Teksnya lebar-tetap dan sama persis di layar, di WhatsApp, dan di printer termal.",
+      },
+      {
+        img: "/shots/ezura-4-qris.webp",
+        title: "QRIS yang nominalnya sudah terisi",
+        note: "Dihitung di HP dari QRIS statis yang sudah tertempel di meja — tanpa penyedia jasa pembayaran, tanpa potongan, tanpa sinyal. Batasnya ditulis terang-terangan di layarnya sendiri: aplikasinya tidak pernah tahu uangnya sudah masuk, jadi penjualan baru tercatat setelah tombolnya ditekan.",
+      },
+      {
+        img: "/shots/ezura-5-laporan.webp",
+        title: "Laporan",
+        note: "Rekap bulanan, total tahunan, barang terlaris, untung kotor dari harga modal yang disalin saat transaksi, dan jam paling ramai. Semuanya bisa diunduh jadi satu .xlsx — penyandinya ditulis sendiri, karena pustaka siap pakai membawa lebih dari satu megabita untuk tabel datar.",
       },
     ],
   },

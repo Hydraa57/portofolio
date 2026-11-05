@@ -187,8 +187,8 @@ export const projects = [
     synopsis:
       "Game nongkrong biasanya berakhir sama: satu orang install, sisanya menyerah di halaman App Store. Pixel Matrix menolak itu — buka browser, bagikan kode room, lalu dua sampai empat orang langsung berebut pixel di papan 8×8 yang sama, tanpa daftar dan tanpa install. Bukan sekadar adu cepat: warna target berganti, distraktor bertambah, dua warna target muncul di level 12, dan pixel bom menghukum karena disentuh — yang diuji beban mental, bukan cuma refleks jari.",
     what_i_built:
-      "Monorepo dengan satu sumber aturan main: engine permainan hidup di paket shared dan dipakai identik oleh client solo maupun server multiplayer, jadi keduanya mustahil berbeda. Di atasnya, papan Phaser dengan HUD React yang responsif di layar kecil, server Socket.IO otoritatif yang memutus siapa lebih dulu menyentuh pixel, riwayat match lewat Prisma + PostgreSQL, UI dwibahasa, dan PWA yang bisa dipasang ke home screen.",
-    stack: ["Next.js", "Phaser", "TypeScript", "Socket.IO", "Prisma", "PostgreSQL"],
+      "Monorepo dengan satu sumber aturan main: engine permainan hidup di paket shared dan dipakai identik oleh client solo maupun server multiplayer, jadi keduanya mustahil berbeda. Di atasnya, papan Phaser dengan HUD React yang responsif di layar kecil, server Socket.IO otoritatif yang memutus siapa lebih dulu menyentuh pixel, riwayat match lewat Prisma + PostgreSQL, UI dwibahasa, dan PWA yang bisa dipasang ke home screen. Menyusul permintaan pemain, versi Android native kini dibangun dengan React Native — dipilih justru karena ia satu-satunya yang bisa memakai paket shared apa adanya: Flutter maupun Kotlin menuntut 3.697 baris aturan main diport ke bahasa lain, dua salinan yang harus dijaga sinkron selamanya.",
+    stack: ["Next.js", "Phaser", "TypeScript", "Socket.IO", "React Native", "PostgreSQL"],
     palette: { from: "#cfc8e0", via: "#8f86b5", to: "#3d3a5c" },
     links: {
       live: "https://game-casual-web.vercel.app",
@@ -226,6 +226,43 @@ export const projects = [
         img: "/shots/pixel-5-match.webp",
         title: "Rebutan satu papan",
         note: "Semua pemain berebut pixel di papan yang sama, dengan ping tiap orang tampil di layar. Server Socket.IO yang otoritatif memutus siapa lebih dulu menyentuh — bukan browser masing-masing.",
+      },
+    ],
+  },
+  {
+    no: "06",
+    slug: "ezura",
+    title: "Ezura",
+    tagline: "Kasir untuk usaha yang menjual barang sekaligus menerima jasa.",
+    synopsis:
+      "Semua aplikasi kasir dibangun untuk barang; jasa ditempelkan belakangan sebagai \"produk dengan stok tak terbatas\" — pemiliknya harus mengarang angka stok untuk sesuatu yang tidak punya stok. Ezura menegakkan bedanya di lapisan data, bukan di kedisiplinan kode: jasa tidak punya kolom stok yang terisi, dijaga tiga lapis sekaligus — tipe TypeScript, fungsi RPC, dan constraint tabel. Dirancang untuk warung, katering, laundry, jahit, bengkel, dan salon, yang di Indonesia jarang murni satu jenis.",
+    what_i_built:
+      "Aplikasi kasir local-first: seluruh alur jalan tanpa sinyal lewat IndexedDB, lalu antrean kirim mengangkut maksud (\"catat penjualan\") alih-alih baris, sehingga dua HP tidak pernah saling menimpa. Di atasnya ada struk lebar-tetap yang identik di layar, WhatsApp, dan printer termal ESC/POS; QRIS bernominal dihitung lokal dari QR statis yang sudah ditempel di meja; penyandi .xlsx ditulis sendiri tanpa pustaka; dan sinkronisasi dua arah supaya katalog, penjualan, dan utang turun sendiri saat masuk di HP lain.",
+    stack: ["Next.js", "TypeScript", "Dexie", "Supabase", "PostgreSQL", "PWA"],
+    palette: { from: "#d8e0d4", via: "#9bae96", to: "#4f6350" },
+    links: {
+      live: "https://ezura.hfdz.my.id",
+      github: "https://github.com/Hydraa57/Saas-UMKM",
+    },
+    year: "2026",
+    runtime: null,
+    aperture: "f/8.0",
+    status: "live",
+    highlight:
+      "Setiap kali pengguna memasukkan sesuatu, dia harus langsung menerima sesuatu — di kasir, yang diterima itu struk.",
+    poster: "/shots/ezura-1-gerbang.webp",
+    // Layar kasirnya ada di balik pembuatan akun, jadi yang bisa difoto dari
+    // situs live hanya dua halaman publiknya. Sisanya menyusul.
+    shots: [
+      {
+        img: "/shots/ezura-1-gerbang.webp",
+        title: "Halaman depan",
+        note: "Satu kalimat yang menyebut keduanya sekaligus — barang dan jasa — karena di situlah bedanya dengan kasir lain, dan karena usaha mikro Indonesia jarang murni satu jenis.",
+      },
+      {
+        img: "/shots/ezura-2-cadangan.webp",
+        title: "Kenapa harus buat akun",
+        note: "Gerbangnya dijelaskan, bukan dipaksakan: catatan yang tidak pernah dicadangkan adalah catatan yang akan hilang, dan yang hilang di sini penghasilan orang. Gerbangnya cuma sekali — sesudah satu HP berhasil masuk, ia tidak pernah dikunci lagi, karena kasir yang menolak terbuka saat sinyal mati adalah kasir yang ditinggalkan hari itu juga.",
       },
     ],
   },

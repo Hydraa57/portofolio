@@ -13,7 +13,8 @@ import Intertitle   from './components/Intertitle.jsx'
 import Origin       from './components/Origin.jsx'
 import Craft        from './components/Craft.jsx'
 import Marquee      from './components/Marquee.jsx'
-import Scene        from './components/Scene.jsx'
+import Reel         from './components/Reel.jsx'
+import Works        from './components/Works.jsx'
 import Credits      from './components/Credits.jsx'
 import Filmstrip    from './components/Filmstrip.jsx'
 import Footer       from './components/Footer.jsx'
@@ -41,9 +42,22 @@ export default function App() {
 
   const preload = usePreload(previews)
 
+  /**
+   * Intro dipersingkat 2450 → 1400 ms dan kini bisa dilewati oleh gerakan apa
+   * pun: ketuk, klik, tombol, atau gulir. Jedanya tetap berguna — di situlah
+   * preview diunduh — tapi menahan orang yang sudah ingin masuk adalah tempat
+   * mereka menutup tab, dan pengunjung dari Instagram datang untuk melihat,
+   * bukan menunggu.
+   */
   useEffect(() => {
-    const t = setTimeout(() => setIntroDone(true), 2450)
-    return () => clearTimeout(t)
+    const selesai = () => setIntroDone(true)
+    const t = setTimeout(selesai, 1400)
+    const ev = ['pointerdown', 'keydown', 'wheel', 'touchstart']
+    ev.forEach((e) => window.addEventListener(e, selesai, { once: true, passive: true }))
+    return () => {
+      clearTimeout(t)
+      ev.forEach((e) => window.removeEventListener(e, selesai))
+    }
   }, [])
 
   useReveal(introDone)
@@ -75,40 +89,39 @@ export default function App() {
 
           <Hero />
 
+          {/* Konten lebih dulu: dari Instagram-lah pengunjung terbanyak datang,
+              dan video adalah hal pertama yang ingin mereka lihat. */}
           <Intertitle
             act="I"
-            latin="PARS PRIMA"
-            english="Origin."
-            indonesian="Asal mula. Tempat semuanya dimulai."
+            kicker="Konten"
+            english="Video."
+            indonesian="Isu berat, dibongkar jadi sembilan puluh detik."
           />
-          <Origin />
+          <Reel />
 
           <Intertitle
             act="II"
-            latin="PARS SECUNDA"
-            english="Craft."
-            indonesian="Perkakas — dan tangan yang memakainya."
+            kicker="Produk"
+            english="Produk."
+            indonesian={`${projects.length} aplikasi yang dipakai orang sungguhan.`}
           />
-          <Craft />
+          <Works />
 
           <Marquee />
 
           <Intertitle
             act="III"
-            latin="PARS TERTIA"
-            english="Selected works."
-            indonesian="Lima karya — bukan portofolio, tapi reel."
+            kicker="Asal mula"
+            english="Asal mula."
+            indonesian="Dari mana semuanya dimulai — dan dengan perkakas apa."
           />
-          <section id="scenes">
-            {projects.map((p, i) => (
-              <Scene key={p.slug} project={p} reversed={i % 2 === 1} total={projects.length} />
-            ))}
-          </section>
+          <Origin />
+          <Craft />
 
           <Intertitle
             act="∞"
-            latin="FINIS"
-            english="Let's make something."
+            kicker="Penutup"
+            english="Ayo bikin sesuatu."
             indonesian="Saya terbuka untuk kolaborasi, projek, atau sekadar ngobrol."
           />
           <Credits />

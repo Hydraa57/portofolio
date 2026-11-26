@@ -1,6 +1,7 @@
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { meta } from "../data/meta.js";
 import { projects } from "../data/projects.js";
+import { channel, videos, ringkasAngka } from "../data/reel.js";
 import { useMagnetic } from "../hooks/useMagnetic.js";
 
 // Dihitung dari data project, bukan diketik. Angka ini pernah tertinggal di "3"
@@ -9,10 +10,16 @@ import { useMagnetic } from "../hooks/useMagnetic.js";
 // ada lagi angka yang harus diingat untuk diperbarui.
 const LIVE = projects.filter((p) => p.status === "live").length;
 
+// Penonton video jauh melampaui pengguna aplikasi, jadi angkanya ikut dipajang
+// di depan. Angka Instagram diberi tanggal karena ia SNAPSHOT: tidak ada cara
+// membacanya otomatis tanpa login, dan angka tanpa tanggal basi diam-diam.
+const TONTONAN = videos.reduce((j, v) => j + (v.views ?? 0), 0);
+
 const STATS = [
-  { k: String(LIVE), v: "Live products" },
-  { k: "∞", v: "Automation runs" },
-  { k: "BKS", v: "Indonesia · UTC+7" },
+  { k: ringkasAngka(channel.followers), v: "Pengikut", s: channel.asOf },
+  { k: ringkasAngka(channel.views30d), v: "Views · 30 hari", s: channel.asOf },
+  { k: String(LIVE), v: "Produk live", s: null },
+  { k: "BKS", v: "Indonesia · UTC+7", s: null },
 ];
 
 export default function Hero() {
@@ -77,10 +84,10 @@ export default function Hero() {
           </div>
           <div>
             <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--ink-dim)]">
-              Runtime
+              Penonton
             </div>
             <p className="font-serif mt-2 text-base leading-snug sm:text-lg">
-              ∞ — masih on going.
+              {ringkasAngka(TONTONAN)}+ tontonan di lima video teratas.
             </p>
           </div>
         </div>
@@ -98,6 +105,11 @@ export default function Hero() {
               <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--ink-dim)]">
                 {s.v}
               </div>
+              {s.s && (
+                <div className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.15em] text-[var(--ink-faint)]">
+                  per {s.s}
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -106,10 +118,10 @@ export default function Hero() {
         <div className="reveal mt-12 flex flex-wrap items-center gap-5 reveal-delay-5">
           <div ref={ctaRef} className="inline-block">
             <a
-              href="#scenes"
+              href="#reel"
               className="cta-primary group inline-flex items-center gap-3 border border-[var(--ink)] bg-[var(--ink)] px-6 py-3 font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--paper)] transition-colors duration-500 hover:bg-transparent hover:text-[var(--ink)]"
             >
-              <span>▶ Press play</span>
+              <span>▶ Lihat video</span>
               <ArrowDown
                 size={13}
                 className="transition-transform duration-500 group-hover:translate-y-0.5"
@@ -117,10 +129,20 @@ export default function Hero() {
             </a>
           </div>
           <a
+            href="#works"
+            className="group inline-flex items-center gap-3 border border-[var(--ink)]/40 px-6 py-3 font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--ink)] transition-colors duration-500 hover:border-[var(--ink)]"
+          >
+            <span>Lihat produk</span>
+            <ArrowUpRight
+              size={13}
+              className="transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </a>
+          <a
             href="#credits"
             className="ink-link font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--ink-dim)]"
           >
-            Skip to credits
+            Kontak
           </a>
           <span className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--ink-faint)] sm:inline">
             tip: tekan{" "}

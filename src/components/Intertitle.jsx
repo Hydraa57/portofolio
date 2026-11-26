@@ -1,10 +1,14 @@
 /**
- * INTERTITLE — silent-film-style act separator.
+ * INTERTITLE — pemisah babak bergaya film bisu.
+ *
+ * `kicker` dulu bernama `latin` dan memang berisi bahasa Latin (PARS PRIMA).
+ * Itu dibuang: situs ini dibaca orang yang datang dari Instagram, dan sebuah
+ * babak yang tidak bisa dibaca bukan gaya, melainkan penghalang.
  *
  * Mobile fix: Roman numeral moved BELOW text instead of overlapping right edge.
  * Desktop: stays as right-side watermark, but content area protected.
  */
-export default function Intertitle({ act, latin, english, indonesian }) {
+export default function Intertitle({ act, kicker, english, indonesian }) {
   return (
     <section className="relative overflow-hidden border-y border-[var(--ink)]/15 px-5 py-20 sm:px-8 sm:py-36">
 
@@ -25,9 +29,9 @@ export default function Intertitle({ act, latin, english, indonesian }) {
 
       <div className="reveal relative mx-auto max-w-4xl lg:max-w-[55%]">
         <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.45em] text-[var(--ink-dim)] sm:text-[11px]">
-          <span>{latin}</span>
+          <span>{kicker}</span>
           <span className="text-[var(--ink-faint)]">·</span>
-          <span>ACT {act}</span>
+          <span>BABAK {act}</span>
         </div>
         <h2
           className="font-serif mt-5 font-light leading-[0.92] tracking-[-0.02em]"

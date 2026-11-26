@@ -48,6 +48,7 @@ export default function Intro({ done, preload }) {
       {/* timecode-style footer — doubles as the preload readout */}
       <div className="absolute bottom-8 left-1/2 w-full -translate-x-1/2 px-6 text-center font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--ink-faint)]">
         <div>hfdz.my.id · 24fps · stereo</div>
+        <div className="mt-2 text-[var(--ink-faint)]">ketuk untuk lewati</div>
         {total > 0 && (
           <div className="mt-3 flex items-center justify-center gap-3">
             <span>
